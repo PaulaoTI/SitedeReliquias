@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site de Relíquias | Home</title>
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/Home.css">
 </head>
 
 <body>
@@ -53,7 +53,33 @@
                     <label for="estado">Estado</label>
                     <select id="estado" name="estado" required>
                         <option value="" disabled selected>UF</option>
-                        <option value="AC">AC</option><option value="AL">AL</option><option value="AP">AP</option><option value="AM">AM</option><option value="BA">BA</option><option value="CE">CE</option><option value="DF">DF</option><option value="ES">ES</option><option value="GO">GO</option><option value="MA">MA</option><option value="MT">MT</option><option value="MS">MS</option><option value="MG">MG</option><option value="PA">PA</option><option value="PB">PB</option><option value="PR">PR</option><option value="PE">PE</option><option value="PI">PI</option><option value="RJ">RJ</option><option value="RN">RN</option><option value="RS">RS</option><option value="RO">RO</option><option value="RR">RR</option><option value="SC">SC</option><option value="SP">SP</option><option value="SE">SE</option><option value="TO">TO</option>
+                        <option value="AC">AC</option>
+                        <option value="AL">AL</option>
+                        <option value="AP">AP</option>
+                        <option value="AM">AM</option>
+                        <option value="BA">BA</option>
+                        <option value="CE">CE</option>
+                        <option value="DF">DF</option>
+                        <option value="ES">ES</option>
+                        <option value="GO">GO</option>
+                        <option value="MA">MA</option>
+                        <option value="MT">MT</option>
+                        <option value="MS">MS</option>
+                        <option value="MG">MG</option>
+                        <option value="PA">PA</option>
+                        <option value="PB">PB</option>
+                        <option value="PR">PR</option>
+                        <option value="PE">PE</option>
+                        <option value="PI">PI</option>
+                        <option value="RJ">RJ</option>
+                        <option value="RN">RN</option>
+                        <option value="RS">RS</option>
+                        <option value="RO">RO</option>
+                        <option value="RR">RR</option>
+                        <option value="SC">SC</option>
+                        <option value="SP">SP</option>
+                        <option value="SE">SE</option>
+                        <option value="TO">TO</option>
                     </select>
                 </div>
             </div>
@@ -122,23 +148,28 @@
             </ul>
             O que a Igreja Ensina <br><br>
             <strong>Veneração e não adoração:</strong>
-            Os católicos veneram as relíquias para se aproximarem espiritualmente de Deus. Apenas Deus recebe adoração.<br>
-            <strong>Proteção e cuidado:</strong> A Igreja proíbe a venda de relíquias e exige que sejam guardadas com segurança e respeito em locais sagrados.<br><br>
+            Os católicos veneram as relíquias para se aproximarem espiritualmente de Deus. Apenas Deus recebe
+            adoração.<br>
+            <strong>Proteção e cuidado:</strong> A Igreja proíbe a venda de relíquias e exige que sejam guardadas com
+            segurança e respeito em locais sagrados.<br><br>
             OBS:<br>
             As relíquias disponíveis no momento são todas de 3° Grau.<br><br>
-            Não vendemos relíquias, o valor cobrado no pedido da(s) relíquia(s) é para custos no envio e plastificação do cartão.<br><br>
+            Não vendemos relíquias, o valor cobrado no pedido da(s) relíquia(s) é para custos no envio e plastificação
+            do cartão.<br><br>
             Valor para fazer o pedido: 10-20 reais (envelope | PAC | Correios)<br><br>
             Valor da plastificação: 5 reais por cartão (de qualquer Santo(a) | beato(a)) <br><br>
-            Após clicar em "Fazer pedido" Você será direcionado para o contato de WhatsApp do responsável pela confeccão e envio das relíquias.<br><br>
-            Por lá tudo ficará esclarecido sobre a questão do custo e valor final, o pagamento é feito na chave PIX do proprietário.
+            Após clicar em "Fazer pedido" Você será direcionado para o contato de WhatsApp do responsável pela confeccão
+            e envio das relíquias.<br><br>
+            Por lá tudo ficará esclarecido sobre a questão do custo e valor final, o pagamento é feito na chave PIX do
+            proprietário.
         </h2>
     </div>
 
     <script>
-        document.getElementById('formReliquia').addEventListener('submit', function(e) {
+        document.getElementById('formReliquia').addEventListener('submit', function (e) {
             e.preventDefault();
-            const numeroWhatsApp = "+55 (62) 98136-9705";
-            
+            const numeroWhatsApp = "5562981369705";
+
             const nome = document.getElementById('nome').value;
             const email = document.getElementById('email').value;
             const cep = document.getElementById('cep').value;
@@ -161,10 +192,13 @@
             let msg = `*Novo Pedido de Relíquia*\n\n`;
             msg += `*Dados do Solicitante:*\n• Nome: ${nome}\n• E-mail: ${email}\n\n`;
             msg += `*Endereço de Entrega:*\n• Rua/Av: ${endereco}, Nº ${numeroCasa}\n• Cidade/Estado: ${cidade} - ${estado}\n• CEP: ${cep}\n\n`;
-            msg += `*Detalhes do Pedido:*\n• Relíquias escolhidas:\n   - ${reliquias.join('\n   - ')}\n`;
+            msg += `*Detalhes do Pedido:*\n• Relíquias escolhidas:\n - ${reliquias.join('\n   - ')}\n`;
             msg += `• Quantidade (de cada): ${quantidade}\n• Plastificar Cartão: ${plastificada}\n`;
 
-            window.open(`https://whatsapp.com{numeroWhatsApp}&text=${encodeURIComponent(msg)}`, '_blank');
+            window.open(
+                `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(msg)}`,
+                '_blank'
+            );
         });
     </script>
 </body>
