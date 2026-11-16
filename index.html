@@ -24,30 +24,39 @@
             </div>
 
             <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" placeholder="exemplo@gmail.com" required>
+                <label for="email">CPF</label>
+                <input type="text" id="cpf" name="cpf" placeholder="999.999.999-99" maxlength="14" minlength="14"
+                    inputmode="numeric"
+                    oninput="this.value = this.value.replace(/\D/g, '').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2')"
+                    required>
+
             </div>
 
             <div class="form-row">
                 <div class="form-group size-70">
                     <label for="cep">CEP</label>
-                    <input type="number" id="cep" name="cep" placeholder="00000-000" maxlength="9" required>
+                    <input type="text" id="cep" name="cep" placeholder="000000-000" maxlength="9" minlength="9"
+                        inputmode="numeric"
+                        oninput="this.value = this.value.replace(/\D/g, '').replace(/^(\d{5})(\d)/, '$1-$2')" required>
                 </div>
                 <div class="form-group size-30">
                     <label for="numero">Número</label>
                     <input type="number" id="numero" name="numero" maxlength="2" placeholder="Nº" required>
                 </div>
             </div>
-
+            <div class="form-group size-30">
+                <label for="numero">Complemento</label>
+                <input type="number" id="complemento" name="numero" maxlength="2" placeholder="" required>
+            </div>
             <div class="form-group">
                 <label for="endereco">Endereço (Rua/Avenida)</label>
-                <input type="text" id="endereco" name="endereco" placeholder="Nome da rua ou avenida" required>
+                <input type="text" id="endereco" name="endereco" placeholder="" required>
             </div>
 
             <div class="form-row">
                 <div class="form-group size-70">
                     <label for="cidade">Cidade</label>
-                    <input type="text" id="cidade" name="cidade" placeholder="Sua cidade" required>
+                    <input type="text" id="cidade" name="cidade" placeholder="" required>
                 </div>
                 <div class="form-group size-30">
                     <label for="estado">Estado</label>
@@ -86,29 +95,47 @@
 
             <div>
                 <div class="form-group">
-                    <label>Relíquia (Santo(a) / Beato(a))</label>
+                    <label>Relíquias disponíveis (Santo(a) / Beato(a))</label>
                     <label class="custom-checkbox">
                         <input type="checkbox" name="reliquias" value="São Francisco de Assis">
                         <span class="box"></span>
-                        São Francisco de Assis (1x)
+                        São Francisco de Assis (3°)
                     </label>
 
                     <label class="custom-checkbox">
                         <input type="checkbox" name="reliquias" value="Santa Rita de Cássia">
                         <span class="box"></span>
-                        Santa Rita de Cássia (1x)
+                        Santa Rita de Cássia (3°)
                     </label>
 
                     <label class="custom-checkbox">
                         <input type="checkbox" name="reliquias" value="São Padre Pio">
                         <span class="box"></span>
-                        São Padre Pio (1x)
+                        São Padre Pio (3°)
                     </label>
 
                     <label class="custom-checkbox">
                         <input type="checkbox" name="reliquias" value="Beata Sandra Sabattini">
                         <span class="box"></span>
-                        Beata Sandra Sabattini (1x)
+                        Beata Sandra Sabattini (3°)
+                    </label>
+
+                    <label class="custom-checkbox">
+                        <input type="checkbox" name="reliquias" value="São João Maria Vianney">
+                        <span class="box"></span>
+                        São João Maria Vianney (3°)
+                    </label>
+
+                    <label class="custom-checkbox">
+                        <input type="checkbox" name="reliquias" value="São Paulo VI">
+                        <span class="box"></span>
+                        São Paulo VI (3°)
+                    </label>
+
+                    <label class="custom-checkbox">
+                        <input type="checkbox" name="reliquias" value="São João Paulo II">
+                        <span class="box"></span>
+                        São João Paulo II (3°)
                     </label>
                 </div>
             </div>
@@ -121,11 +148,6 @@
                         <option value="Não">Não</option>
                     </select>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="quantidade">Quantidade de cada:</label>
-                <input type="number" id="quantidade" name="quantidade" min="1" max="100" value="1" step="1"
-                    placeholder="0" required>
             </div>
             <button type="submit" class="btn-submit">Fazer Pedido</button>
         </form>
@@ -171,14 +193,14 @@
             const numeroWhatsApp = "5562981369705";
 
             const nome = document.getElementById('nome').value;
-            const email = document.getElementById('email').value;
+            const cpf = document.getElementById('cpf').value;
             const cep = document.getElementById('cep').value;
-            const numeroCasa = document.getElementById('numero').value;
+            const numero = document.getElementById('numero').value;
+            const complemento = document.getElementById('complemento').value;
             const endereco = document.getElementById('endereco').value;
             const cidade = document.getElementById('cidade').value;
             const estado = document.getElementById('estado').value;
             const plastificada = document.getElementById('plastificada').value;
-            const quantidade = document.getElementById('quantidade').value;
 
             const checkboxes = document.querySelectorAll('input[name="reliquias"]:checked');
             let reliquias = [];
@@ -190,10 +212,11 @@
             }
 
             let msg = `*Novo Pedido de Relíquia*\n\n`;
-            msg += `*Dados do Solicitante:*\n• Nome: ${nome}\n• E-mail: ${email}\n\n`;
-            msg += `*Endereço de Entrega:*\n• Rua/Av: ${endereco}, Nº ${numeroCasa}\n• Cidade/Estado: ${cidade} - ${estado}\n• CEP: ${cep}\n\n`;
-            msg += `*Detalhes do Pedido:*\n• Relíquias escolhidas:\n - ${reliquias.join('\n   - ')}\n`;
-            msg += `• Quantidade (de cada): ${quantidade}\n• Plastificar Cartão: ${plastificada}\n`;
+            msg += `Nome: ${nome}\nCPF: ${cpf}\n CEP: ${cep}\n\n`;
+            msg += `Rua/Av: ${endereco}, Nº ${numeroCasa}\n Complemento ${complemento}\n 
+            Cidade/Estado: ${cidade} - ${estado}\n`;
+            msg += `Relíquias selecionadas:\n - ${reliquias.join('\n   - ')}\n`;
+            msg += `Plastificar Cartão: ${plastificada}\n`;
 
             window.open(
                 `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(msg)}`,
@@ -201,6 +224,37 @@
             );
         });
     </script>
+
+    <script>
+        const disponibilidadeReliquias = {
+            "São Francisco de Assis": true,
+            "Santa Rita de Cássia": true,
+            "São Padre Pio": true,
+            "Beata Sandra Sabattini": true,
+            "São João Maria Vianney": false,
+            "São Paulo VI": false,
+            "São João Paulo II": false
+        };
+
+        document.querySelectorAll('input[name="reliquias"]').forEach(checkbox => {
+            const disponivel = disponibilidadeReliquias[checkbox.value];
+            const label = checkbox.closest('label');
+
+            if (disponivel === false) {
+                checkbox.disabled = true; 
+                checkbox.checked = false; 
+                label.style.opacity = "0.6";
+                label.style.cursor = "not-allowed"; 
+
+                if (!label.querySelector('i')) {
+                    const aviso = document.createElement('i');
+                    aviso.textContent = 'Indisponível';
+                    label.appendChild(aviso);
+                }
+            }
+        });
+    </script>
+
 </body>
 
 </html>
