@@ -29,7 +29,6 @@
                     inputmode="numeric"
                     oninput="this.value = this.value.replace(/\D/g, '').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2')"
                     required>
-
             </div>
 
             <div class="form-row">
@@ -237,7 +236,7 @@
 
             let msg = `*Novo Pedido de Relíquia*\n\n`;
             msg += `Nome: ${nome}\nCPF: ${cpf}\n CEP: ${cep}\n\n`;
-            msg += `Rua/Av: ${endereco}, Nº ${numeroCasa}\n Complemento ${complemento}\n 
+            msg += `Rua/Av: ${endereco}, Nº ${numero}\n Complemento ${complemento}\n 
             Cidade/Estado: ${cidade} - ${estado}\n`;
             msg += `Relíquias selecionadas:\n - ${reliquias.join('\n   - ')}\n`;
             msg += `Plastificar Cartão: ${plastificada}\n`;
